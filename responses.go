@@ -12,7 +12,6 @@ func ResponseJSON(w http.ResponseWriter, statusCode int, data interface{}) {
 	if err != nil {
 		fmt.Fprintf(w, "%s", err.Error())
 	}
-	return
 }
 
 func ResponseERROR(w http.ResponseWriter, statusCode int, err error) {
@@ -25,7 +24,6 @@ func ResponseERROR(w http.ResponseWriter, statusCode int, err error) {
 		return
 	}
 	ResponseJSON(w, http.StatusBadRequest, nil)
-	return
 }
 
 func SetMiddlewareJSON(next http.HandlerFunc) http.HandlerFunc {
