@@ -2,7 +2,7 @@ package response
 
 import (
 	"encoding/json"
-	"github.com/mlplabs/app-utils/http/errors"
+	"github.com/mlplabs/app-utils/pkg/http/errors"
 	"net/http"
 )
 
