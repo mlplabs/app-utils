@@ -9,7 +9,7 @@ import (
 type CommonError interface {
 	StatusCode() int
 	ErrorCode() string
-	ErrorText() string
+	Error() string
 }
 
 type ResponseError struct {
@@ -36,7 +36,7 @@ func SetError(w http.ResponseWriter, err error) {
 	data := ResponseError{
 		Error: Response{
 			Code:    commonErr.ErrorCode(),
-			Message: commonErr.ErrorText(),
+			Message: commonErr.Error(),
 			Data:    nil,
 			Service: "",
 		},

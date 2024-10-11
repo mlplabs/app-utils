@@ -12,7 +12,7 @@ func (*ServerError) StatusCode() int {
 	return 500
 }
 
-func (e *ServerError) ErrorText() string {
+func (e *ServerError) Error() string {
 	return "Ошибка сервиса"
 }
 

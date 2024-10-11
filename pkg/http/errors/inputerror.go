@@ -12,7 +12,7 @@ func (*InvalidInputData) ErrorCode() string {
 	return "INVALID_INPUT_DATA"
 }
 
-func (e *InvalidInputData) ErrorText() string {
+func (e *InvalidInputData) Error() string {
 	return e.err.Error()
 }
 
@@ -32,7 +32,7 @@ func (*BadRequest) ErrorCode() string {
 	return "BAD_REQUEST"
 }
 
-func (e *BadRequest) ErrorText() string {
+func (e *BadRequest) Error() string {
 	return e.err.Error()
 }
 

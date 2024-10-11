@@ -12,7 +12,7 @@ func (e *ForbiddenError) ErrorCode() string {
 	return "FORBIDDEN"
 }
 
-func (e *ForbiddenError) ErrorText() string {
+func (e *ForbiddenError) Error() string {
 	return e.err.Error()
 }
 
@@ -30,6 +30,6 @@ func (e *Unauthorized) ErrorCode() string {
 	return "UNAUTHORIZED"
 }
 
-func (e *Unauthorized) ErrorText() string {
+func (e *Unauthorized) Error() string {
 	return "Не аутентифицирован"
 }
