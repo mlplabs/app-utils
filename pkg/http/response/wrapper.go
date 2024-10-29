@@ -2,6 +2,7 @@ package response
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/mlplabs/app-utils/pkg/http/errors"
 	"net/http"
 )
@@ -17,7 +18,6 @@ func NewWrapper() *Wrapper {
 }
 
 func (rw *Wrapper) response(w http.ResponseWriter, data interface{}) {
-	w.WriteHeader(http.StatusOK)
 	if data != nil {
 		wrapData := PlainData{
 			Data: data,
@@ -27,6 +27,7 @@ func (rw *Wrapper) response(w http.ResponseWriter, data interface{}) {
 			errors.SetError(w, err)
 			return
 		}
+		w.WriteHeader(http.StatusOK)
 		w.Write(body)
 	}
 }
@@ -50,5 +51,17 @@ func (rw *Wrapper) Data(ctrlFunc func(r *http.Request) (interface{}, error)) htt
 			return
 		}
 		rw.response(w, data)
+	}
+}
+
+func (rw *Wrapper) Raw(ctrlFunc func(w http.ResponseWriter, r *http.Request) (interface{}, error)) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		data, err := ctrlFunc(w, r)
+		if err != nil {
+			errors.SetError(w, err)
+			return
+		}
+		w.WriteHeader(http.StatusOK)
+		fmt.Fprint(w, data)
 	}
 }
