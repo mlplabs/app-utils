@@ -39,3 +39,23 @@ func (e *BadRequest) Error() string {
 func NewBadRequest(err error) *BadRequest {
 	return &BadRequest{err: err}
 }
+
+type NotFoundError struct {
+	err error
+}
+
+func NewNotFoundError(err error) *NotFoundError {
+	return &NotFoundError{err: err}
+}
+
+func (*NotFoundError) StatusCode() int {
+	return 404
+}
+
+func (*NotFoundError) ErrorCode() string {
+	return "NOT_FOUND"
+}
+
+func (e *NotFoundError) Error() string {
+	return e.err.Error()
+}
