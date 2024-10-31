@@ -18,9 +18,9 @@ type List struct {
 }
 
 type DataRange struct {
-	Count  int32 `json:"count"`
-	Limit  int32 `json:"limit"`
-	Offset int32 `json:"offset"`
+	Count  int `json:"count"`
+	Limit  int `json:"limit"`
+	Offset int `json:"offset"`
 }
 
 type Pagination struct {
