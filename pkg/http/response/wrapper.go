@@ -102,7 +102,7 @@ func (rw *Wrapper) DataList(ctrlFunc func(r *http.Request) (interface{}, error))
 	}
 }
 
-func (rw *Wrapper) Pagination(ctrlFunc func(r *http.Request) (interface{}, *DataRange, error)) http.HandlerFunc {
+func (rw *Wrapper) DataPages(ctrlFunc func(r *http.Request) (interface{}, *DataRange, error)) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		data, params, err := ctrlFunc(r)
 		if err != nil {
